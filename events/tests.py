@@ -57,7 +57,7 @@ class EventModelTests(TestCase):
         with self.assertRaises(Event.DoesNotExist):
             Event.objects.get(title=self.test_title)
 
-        request = self.factory.post(f'/api/events/', {
+        request = self.factory.post('/api/events/', {
             'title': self.test_title,
             'description': self.test_description,
             'date': self.test_date,
@@ -78,7 +78,7 @@ class EventModelTests(TestCase):
             organizer=self.test_organizer
         )
 
-        request = self.factory.get(f'/api/events/')
+        request = self.factory.get('/api/events/')
         resposne = EventDetail.as_view()(request, pk=event.pk)
 
         self.assertEqual(resposne.status_code, 200)
@@ -95,7 +95,7 @@ class EventModelTests(TestCase):
             organizer=self.test_organizer
         )
 
-        request = self.factory.put(f'/api/events/', {
+        request = self.factory.put('/api/events/', {
             'title': self.test_title_updated,
             'description': self.test_description,
             'date': self.test_date,
@@ -116,7 +116,7 @@ class EventModelTests(TestCase):
             organizer=self.test_organizer
         )
 
-        request = self.factory.delete(f'/api/events/')
+        request = self.factory.delete('/api/events/')
         response = EventDetail.as_view()(request, pk=event.pk)
 
         self.assertEqual(response.status_code, 204)
