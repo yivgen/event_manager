@@ -4,12 +4,13 @@ from datetime import datetime, timezone
 from django.db.utils import IntegrityError
 
 class EventTests(TestCase):
-    def setUp(self) -> None:
-        self.test_title = 'Test event'
-        self.test_description = 'This is a test event.'
-        self.test_date = datetime.now(tz=timezone.utc)
-        self.test_location = 'Kiev, Independence Square'
-        self.test_organizer = 'Django'        
+    @classmethod
+    def setUpTestData(cls) -> None:
+        cls.test_title = 'Test event'
+        cls.test_description = 'This is a test event.'
+        cls.test_date = datetime.now(tz=timezone.utc)
+        cls.test_location = 'Kiev, Independence Square'
+        cls.test_organizer = 'Django'        
 
     def test_create_event(self):
         event = Event.objects.create(
