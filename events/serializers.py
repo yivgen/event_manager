@@ -1,8 +1,10 @@
 from rest_framework import serializers
 from events.models import Event
 from events.utils import schedule_event_notification
+from users.serializers import UserSerializer
 
 class EventSerializer(serializers.ModelSerializer):
+    registered_users = UserSerializer(many=True, read_only=True)
     class Meta:
         model = Event
         fields = '__all__'
