@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-ngs0)_z(t%7t+22tkts2juc3_(2ulcvs2vixv=4a)wdx%^ftp=
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['192.168.0.102']
 
 
 # Application definition
@@ -125,3 +125,9 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = "users.MyUser"
+
+
+CELERY_BROKER_URL = "redis://localhost:6379/0"
+CELERY_RESULT_BACKEND = "redis://localhost:6379/1"
+
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
